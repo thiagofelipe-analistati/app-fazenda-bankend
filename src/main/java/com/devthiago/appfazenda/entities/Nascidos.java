@@ -1,6 +1,6 @@
 package com.devthiago.appfazenda.entities;
 
-import java.util.Date;
+import java.time.Instant;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,24 +14,24 @@ public class Nascidos {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Long Identificacao;
-	private Date dataNascimento;
+	private Instant dataNascimento;
 	private String Sexo;
 	
 	@ManyToOne
 	private Matrizes matrizes;
 	@ManyToOne
-	private Proprietarios proprietario;
+	private Proprietarios proprietarios;
 	
 	public Nascidos() {
 	}
-	public Nascidos(Long id, Long identificacao, Date dataNascimento, String sexo, Matrizes matrizes,
+	public Nascidos(Long id, Long identificacao, Instant dataNascimento, String sexo, Matrizes matrizes,
 			Proprietarios proprietario) {
 		this.id = id;
 		this.Identificacao = identificacao;
 		this.dataNascimento = dataNascimento;
 		this.Sexo = sexo;
 		this.matrizes = matrizes;
-		this.proprietario = proprietario;
+		this.proprietarios = proprietario;
 	}
 	public String getSexo() {
 		return Sexo;
@@ -55,11 +55,11 @@ public class Nascidos {
 		Identificacao = identificacao;
 	}
 
-	public Date getDataNascimento() {
+	public Instant getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(Instant dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
@@ -72,10 +72,10 @@ public class Nascidos {
 	}
 
 	public Proprietarios getProprietario() {
-		return proprietario;
+		return proprietarios;
 	}
 
 	public void setProprietario(Proprietarios proprietario) {
-		this.proprietario = proprietario;
+		this.proprietarios = proprietario;
 	}
 }

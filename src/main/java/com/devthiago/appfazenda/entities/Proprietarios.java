@@ -1,5 +1,6 @@
 package com.devthiago.appfazenda.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,20 +9,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-public class Proprietarios {
+public class Proprietarios implements Serializable {
+	
+	/**
+	 * 
+	 */
+	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	
-	@OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL)
+	@JsonIgnore
+	@OneToMany(mappedBy = "proprietarios", cascade = CascadeType.ALL)
 	private List<Nascidos> nascidos = new ArrayList<>();
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "proprietarios", cascade = CascadeType.ALL)
 	private List<Matrizes> matrizes = new ArrayList<>();
+	
 	
 	public Proprietarios() {
 	}
