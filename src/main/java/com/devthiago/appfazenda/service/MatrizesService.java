@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.devthiago.appfazenda.entities.Matrizes;
+import com.devthiago.appfazenda.entities.Proprietarios;
 import com.devthiago.appfazenda.repositories.MatrizesRepository;
 
 
@@ -28,5 +29,16 @@ public class MatrizesService {
 	}
 	public void delete(Long id) {
 		userRepository.deleteById(id);
+	}
+	public Matrizes update(Long id, Matrizes obj) {
+		Matrizes entity = userRepository.getOne(id);
+		updateData(entity, obj);
+		return userRepository.save(entity);
+		
+	}
+	private void updateData(Matrizes entity, Matrizes obj) {
+		entity.setIdentificacao(obj.getIdentificacao());
+		entity.setDataNascimento(obj.getDataNascimento());
+		entity.setProprietarios(obj.getProprietarios());
 	}
 }

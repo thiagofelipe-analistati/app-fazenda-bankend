@@ -29,4 +29,17 @@ public class NascidosService {
 	public void delete(Long id) {
 		userRepository.deleteById(id);
 	}
+	public Nascidos update(Long id, Nascidos obj) {
+		Nascidos entity = userRepository.getOne(id);
+		updateData(entity, obj);
+		return userRepository.save(entity);
+		
+	}
+	private void updateData(Nascidos entity, Nascidos obj) {
+		entity.setDataNascimento(obj.getDataNascimento());
+		entity.setIdentificacao(obj.getIdentificacao());
+		entity.setSexo(obj.getSexo());
+		entity.setProprietario(obj.getProprietario());
+		entity.setMatrizes(obj.getMatrizes());
+	}
 }

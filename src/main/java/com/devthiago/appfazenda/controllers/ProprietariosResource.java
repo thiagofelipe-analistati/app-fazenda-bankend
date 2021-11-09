@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,10 +17,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.devthiago.appfazenda.entities.Proprietarios;
 import com.devthiago.appfazenda.service.ProprietariosService;
-
-
-
-
 
 @RestController //implementação do rest 
 @RequestMapping (value = "/proprietarios")
@@ -33,9 +30,6 @@ public class ProprietariosResource {
 		List<Proprietarios> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
-	
-	
-	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Proprietarios> FindById(@PathVariable Long id){ 
 		Proprietarios obj  = service.findById(id);
@@ -52,5 +46,10 @@ public class ProprietariosResource {
 	public ResponseEntity<Void> delete(@PathVariable Long id){
 		service.delete(id);
 		return ResponseEntity.noContent().build();
+	}
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<Proprietarios> update (@PathVariable Long id,@RequestBody Proprietarios obj ){
+		obj = service.update(id, obj);
+		return ResponseEntity.ok().body(obj);
 	}
 }

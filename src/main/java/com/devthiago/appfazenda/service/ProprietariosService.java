@@ -29,4 +29,13 @@ public class ProprietariosService {
 	public void delete(Long id) {
 		userRepository.deleteById(id);
 	}
+	public Proprietarios update(Long id, Proprietarios obj) {
+		Proprietarios entity = userRepository.getOne(id);
+		updateData(entity, obj);
+		return userRepository.save(entity);
+		
+	}
+	private void updateData(Proprietarios entity, Proprietarios obj) {
+		entity.setName(obj.getName());
+	}
 }
