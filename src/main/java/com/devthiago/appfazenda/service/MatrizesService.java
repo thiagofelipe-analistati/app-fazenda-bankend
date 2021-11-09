@@ -26,4 +26,7 @@ public class MatrizesService {
 	public Matrizes Insert(Matrizes obj) {
 		return userRepository.save(obj);
 	}
+	public void delete(Long id) {
+		userRepository.deleteById(id);
+	}
 }

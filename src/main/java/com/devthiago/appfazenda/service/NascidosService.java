@@ -26,4 +26,7 @@ public class NascidosService {
 	public Nascidos Insert(Nascidos obj) {
 		return userRepository.save(obj);
 	}
+	public void delete(Long id) {
+		userRepository.deleteById(id);
+	}
 }

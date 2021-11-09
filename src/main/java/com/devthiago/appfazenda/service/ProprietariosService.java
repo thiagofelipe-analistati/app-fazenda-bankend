@@ -26,4 +26,7 @@ public class ProprietariosService {
 	public Proprietarios Insert(Proprietarios obj) {
 		return userRepository.save(obj);
 	}
+	public void delete(Long id) {
+		userRepository.deleteById(id);
+	}
 }
