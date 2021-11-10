@@ -33,6 +33,9 @@ public class Proprietarios implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "proprietarios", cascade = CascadeType.ALL)
 	private List<Matrizes> matrizes = new ArrayList<>();
+	@JsonIgnore
+	@OneToMany(mappedBy = "proprietarios", cascade = CascadeType.ALL)
+	private List<Reprodutores> reprodutores = new ArrayList<>();
 	
 	
 	public Proprietarios() {
@@ -58,6 +61,9 @@ public class Proprietarios implements Serializable {
 	}
 	public List<Matrizes> getMatrizes() {
 		return matrizes;
+	}
+	public List<Reprodutores> getReprodutores() {
+		return reprodutores;
 	}
 	
 	

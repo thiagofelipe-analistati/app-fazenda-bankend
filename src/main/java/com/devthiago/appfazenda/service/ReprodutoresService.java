@@ -10,26 +10,25 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.devthiago.appfazenda.entities.Matrizes;
-import com.devthiago.appfazenda.repositories.MatrizesRepository;
+import com.devthiago.appfazenda.entities.Reprodutores;
+import com.devthiago.appfazenda.repositories.ReprodutoresRepository;
 import com.devthiago.appfazenda.service.exceptions.DatabaseExcepetion;
 import com.devthiago.appfazenda.service.exceptions.ResourceNotFoundException;
 
 
 @Service
-public class MatrizesService {
+public class ReprodutoresService {
 	
 	@Autowired
-	private MatrizesRepository userRepository;
-	public List<Matrizes> findAll(){
+	private ReprodutoresRepository userRepository;
+	public List<Reprodutores> findAll(){
 		return userRepository.findAll();
-
 	}
-	public Matrizes findById(Long id) {
-		Optional<Matrizes> obj = userRepository.findById(id);
+	public Reprodutores findById(Long id) {
+		Optional<Reprodutores> obj = userRepository.findById(id);
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
-	public Matrizes Insert(Matrizes obj) {
+	public Reprodutores Insert(Reprodutores obj) {
 		return userRepository.save(obj);
 	}
 	public void delete(Long id) {
@@ -41,17 +40,16 @@ public class MatrizesService {
 			throw new DatabaseExcepetion(e.getMessage());
 		}
 	}
-	public Matrizes update(Long id, Matrizes obj) {
+	public Reprodutores update(Long id, Reprodutores obj) {
 		try {
-		Matrizes entity = userRepository.getOne(id);
+		Reprodutores entity = userRepository.getOne(id);
 		updateData(entity, obj);
 		return userRepository.save(entity);
 		} catch (EntityNotFoundException e) {
 		throw new ResourceNotFoundException(id);
 		}
-		
 	}
-	private void updateData(Matrizes entity, Matrizes obj) {
+	private void updateData(Reprodutores entity, Reprodutores obj) {
 		entity.setIdentificacao(obj.getIdentificacao());
 		entity.setDataNascimento(obj.getDataNascimento());
 		entity.setProprietarios(obj.getProprietarios());

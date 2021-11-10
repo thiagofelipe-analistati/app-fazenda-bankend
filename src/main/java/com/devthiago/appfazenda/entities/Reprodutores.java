@@ -1,11 +1,12 @@
 package com.devthiago.appfazenda.entities;
 
-import java.util.Date;
+import java.time.Instant;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Reprodutores {
@@ -13,16 +14,22 @@ public class Reprodutores {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Long Identificacao;
-	private Date dataNascimento;
+	private Instant dataNascimento;
 	
+	@ManyToOne
+	private Proprietarios proprietarios;
+
 
 	public Reprodutores() {
 	}
-	public Reprodutores(Long id, Long identificacao, Date dataNascimento) {
+	
+	public Reprodutores(Long id, Long identificacao,Instant dataNascimento, Proprietarios proprietarios) {
 		this.id = id;
 		Identificacao = identificacao;
 		this.dataNascimento = dataNascimento;
+		this.proprietarios = proprietarios;
 	}
+
 	public Long getId() {
 		return id;
 	}
@@ -35,10 +42,19 @@ public class Reprodutores {
 	public void setIdentificacao(Long identificacao) {
 		Identificacao = identificacao;
 	}
-	public Date getDataNascimento() {
+	public Instant getDataNascimento() {
 		return dataNascimento;
 	}
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(Instant dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
+
+	public Proprietarios getProprietarios() {
+		return proprietarios;
+	}
+
+	public void setProprietarios(Proprietarios proprietarios) {
+		this.proprietarios = proprietarios;
+	}
+	
 }

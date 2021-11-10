@@ -11,9 +11,11 @@ import org.springframework.context.annotation.Profile;
 import com.devthiago.appfazenda.entities.Matrizes;
 import com.devthiago.appfazenda.entities.Nascidos;
 import com.devthiago.appfazenda.entities.Proprietarios;
+import com.devthiago.appfazenda.entities.Reprodutores;
 import com.devthiago.appfazenda.repositories.MatrizesRepository;
 import com.devthiago.appfazenda.repositories.NascidosRepository;
 import com.devthiago.appfazenda.repositories.ProprietariosRepository;
+import com.devthiago.appfazenda.repositories.ReprodutoresRepository;
 
 @Configuration
 @Profile("test")
@@ -26,6 +28,8 @@ public class TestConfig implements CommandLineRunner{
 	private MatrizesRepository mrepository;
 	@Autowired
 	private NascidosRepository nrepository;
+	@Autowired
+	private ReprodutoresRepository rrepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -42,7 +46,10 @@ public class TestConfig implements CommandLineRunner{
 		
 		Nascidos n1 = new Nascidos(null, (long)01, Instant.parse("2019-07-22T15:21:22Z"), "M", m2, u2);
 		nrepository.saveAll(Arrays.asList(n1));
+	
 		
+		Reprodutores r1 = new Reprodutores(null, (long)01, Instant.parse("2019-07-22T15:21:22Z"), u1);
+		rrepository.saveAll(Arrays.asList(r1));
 	}
 	
 	

@@ -4,10 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.devthiago.appfazenda.entities.Proprietarios;
 import com.devthiago.appfazenda.repositories.ProprietariosRepository;
+import com.devthiago.appfazenda.service.exceptions.DatabaseExcepetion;
+import com.devthiago.appfazenda.service.exceptions.ResourceNotFoundException;
 
 
 @Service
@@ -21,13 +25,19 @@ public class ProprietariosService {
 	}
 	public Proprietarios findById(Long id) {
 		Optional<Proprietarios> obj = userRepository.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	public Proprietarios Insert(Proprietarios obj) {
 		return userRepository.save(obj);
 	}
 	public void delete(Long id) {
-		userRepository.deleteById(id);
+		try {
+			userRepository.deleteById(id);
+		} catch ( EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DatabaseExcepetion(e.getMessage());
+		}
 	}
 	public Proprietarios update(Long id, Proprietarios obj) {
 		Proprietarios entity = userRepository.getOne(id);

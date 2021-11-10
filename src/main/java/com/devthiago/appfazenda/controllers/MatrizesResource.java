@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.devthiago.appfazenda.entities.Matrizes;
-import com.devthiago.appfazenda.entities.Proprietarios;
 import com.devthiago.appfazenda.service.MatrizesService;
 
 @RestController //implementação do rest 
