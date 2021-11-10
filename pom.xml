@@ -15,8 +15,6 @@
 	<description>Projeto bakend desenvolvido para o app- fazenda</description>
 	<properties>
 		<java.version>11</java.version>
-    <maven.compiler.source>13</maven.compiler.source>
-    <maven.compiler.target>13</maven.compiler.target>
   </properties> 
 	<dependencies>
 		<dependency>
@@ -56,11 +54,15 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+            </configuration>
+        </plugin>
+    </plugins>
 	</build>
 
 </project>
