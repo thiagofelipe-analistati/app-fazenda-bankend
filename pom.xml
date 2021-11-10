@@ -15,7 +15,9 @@
 	<description>Projeto bakend desenvolvido para o app- fazenda</description>
 	<properties>
 		<java.version>11</java.version>
-	</properties>
+    <maven.compiler.source>13</maven.compiler.source>
+    <maven.compiler.target>13</maven.compiler.target>
+  </properties> 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
