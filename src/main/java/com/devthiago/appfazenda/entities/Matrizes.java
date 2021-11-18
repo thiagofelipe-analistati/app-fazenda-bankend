@@ -7,11 +7,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 @Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"Identificacao"})})
 public class Matrizes {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

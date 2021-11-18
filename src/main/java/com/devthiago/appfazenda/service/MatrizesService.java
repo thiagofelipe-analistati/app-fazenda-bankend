@@ -18,7 +18,6 @@ import com.devthiago.appfazenda.service.exceptions.ResourceNotFoundException;
 
 @Service
 public class MatrizesService {
-	
 	@Autowired
 	private MatrizesRepository userRepository;
 	public List<Matrizes> findAll(){
@@ -48,7 +47,6 @@ public class MatrizesService {
 		} catch (EntityNotFoundException e) {
 		throw new ResourceNotFoundException(id);
 		}
-		
 	}
 	private void updateData(Matrizes entity, Matrizes obj) {
 		entity.setIdentificacao(obj.getIdentificacao());
