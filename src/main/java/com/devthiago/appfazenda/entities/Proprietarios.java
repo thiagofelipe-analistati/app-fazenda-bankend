@@ -37,7 +37,6 @@ public class Proprietarios implements Serializable {
 	@OneToMany(mappedBy = "proprietarios", cascade = CascadeType.ALL)
 	private List<Reprodutores> reprodutores = new ArrayList<>();
 	
-	
 	public Proprietarios() {
 	}
 	public Proprietarios(Long id, String name) {

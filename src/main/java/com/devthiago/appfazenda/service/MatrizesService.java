@@ -22,8 +22,7 @@ public class MatrizesService {
 	@Autowired
 	private MatrizesRepository userRepository;
 	public List<Matrizes> findAll(){
-		return userRepository.findAll();
-
+		return  userRepository.findAll();
 	}
 	public Matrizes findById(Long id) {
 		Optional<Matrizes> obj = userRepository.findById(id);

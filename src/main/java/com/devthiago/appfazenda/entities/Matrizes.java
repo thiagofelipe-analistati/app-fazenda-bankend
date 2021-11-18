@@ -1,12 +1,14 @@
 package com.devthiago.appfazenda.entities;
 
-import java.time.Instant;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 @Entity
@@ -15,17 +17,16 @@ public class Matrizes {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Long Identificacao;
-	private Instant dataNascimento;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy" , timezone = "GMT")
+	private Date dataNascimento;
 
 	@ManyToOne
 	private Proprietarios proprietarios;
-
-
+	
 	public Matrizes() {
-		
 	}
 	
-	public Matrizes(Long id, Long identificacao, Instant dataNascimento, Proprietarios proprietarios) {
+	public Matrizes(Long id, Long identificacao, Date dataNascimento, Proprietarios proprietarios) {
 		this.id = id;
 		Identificacao = identificacao;
 		this.dataNascimento = dataNascimento;
@@ -48,11 +49,11 @@ public class Matrizes {
 		Identificacao = identificacao;
 	}
 
-	public Instant getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Instant dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 

@@ -19,19 +19,15 @@ import com.devthiago.appfazenda.entities.Reprodutores;
 import com.devthiago.appfazenda.service.ReprodutoresService;
 
 @RestController //implementação do rest 
-@RequestMapping (value = "/Reprodutores")
+@RequestMapping (value = "/reprodutores")
 public class ReprodutoresResource {
-	
 	@Autowired
 	private ReprodutoresService service;
 	@GetMapping
 	public ResponseEntity<List<Reprodutores>> findall(){
-		
 		List<Reprodutores> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
-	
-
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Reprodutores> FindById(@PathVariable Long id){ 
 		Reprodutores obj  = service.findById(id);

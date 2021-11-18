@@ -1,7 +1,8 @@
 package com.devthiago.appfazenda.confing;
 
-import java.time.Instant;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -21,6 +22,8 @@ import com.devthiago.appfazenda.repositories.ReprodutoresRepository;
 @Profile("test")
 public class TestConfig implements CommandLineRunner{
 	
+	
+	
 	@Autowired
 	private ProprietariosRepository repository;
 	
@@ -33,6 +36,8 @@ public class TestConfig implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
+		SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+		Date y1 = sdf1.parse("25/07/1994");
 		Proprietarios u1 = new Proprietarios(null, "Thiago");
 		Proprietarios u2 = new Proprietarios(null, "Pablo");
 		Proprietarios u3 = new Proprietarios(null, "Thayrone");
@@ -40,15 +45,16 @@ public class TestConfig implements CommandLineRunner{
 		Proprietarios u5 = new Proprietarios(null, "Monteiro");
 		repository.saveAll(Arrays.asList(u1,u2,u3,u4,u5));
 		
-		Matrizes m1 = new Matrizes(null, (long) 02, Instant.parse("2019-07-22T15:21:22Z"), u2);
-		Matrizes m2 = new Matrizes(null, (long)01, Instant.parse("2019-07-22T15:21:22Z"), u1);
+		Matrizes m1 = new Matrizes(null, (long) 02, y1, u2);
+	
+		Matrizes m2 = new Matrizes(null, (long)01,  y1, u1);
 		mrepository.saveAll(Arrays.asList(m1,m2));
 		
-		Nascidos n1 = new Nascidos(null, (long)01, Instant.parse("2019-07-22T15:21:22Z"), "M", m2, u2);
+		Nascidos n1 = new Nascidos(null, (long)01, y1, "M", m2, u2);
 		nrepository.saveAll(Arrays.asList(n1));
 	
 		
-		Reprodutores r1 = new Reprodutores(null, (long)01, Instant.parse("2019-07-22T15:21:22Z"), u1);
+		Reprodutores r1 = new Reprodutores(null, (long)01, y1, u1);
 		rrepository.saveAll(Arrays.asList(r1));
 	}
 	

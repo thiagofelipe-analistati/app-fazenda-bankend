@@ -18,20 +18,16 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.devthiago.appfazenda.entities.Matrizes;
 import com.devthiago.appfazenda.service.MatrizesService;
 
-@RestController //implementação do rest 
+@RestController
 @RequestMapping (value = "/matrizes")
 public class MatrizesResource {
-	
 	@Autowired
 	private MatrizesService service;
 	@GetMapping
 	public ResponseEntity<List<Matrizes>> findall(){
-		
 		List<Matrizes> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
-	
-
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Matrizes> FindById(@PathVariable Long id){ 
 		Matrizes obj  = service.findById(id);
