@@ -7,44 +7,40 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(uniqueConstraints={@UniqueConstraint(columnNames={"Identificacao"})})
-public class Nascidos {
+public class Bezerras {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Long Identificacao;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy" , timezone = "GMT")
-	private Date dataNascimento;
-	private String Sexo;
+	private Date dataNascimento;	
 	
 	@ManyToOne
 	private Matrizes matrizes;
+	
 	@ManyToOne
 	private Proprietarios proprietarios;
 	
-	public Nascidos() {
+	public Bezerras() {
 	}
-	public Nascidos(Long id, Long identificacao, Date dataNascimento, String sexo, Matrizes matrizes,
+	public Bezerras(Long id, Long identificacao, Date dataNascimento, Matrizes matrizes,
 			Proprietarios proprietario) {
 		this.id = id;
 		this.Identificacao = identificacao;
 		this.dataNascimento = dataNascimento;
-		this.Sexo = sexo;
 		this.matrizes = matrizes;
 		this.proprietarios = proprietario;
 	}
-	public String getSexo() {
-		return Sexo;
-	}
-	public void setSexo(String sexo) {
-		Sexo = sexo;
-	}
+
 	public Long getId() {
 		return id;
 	}

@@ -15,30 +15,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.devthiago.appfazenda.entities.Nascidos;
-import com.devthiago.appfazenda.service.NascidosService;
+import com.devthiago.appfazenda.entities.Bezerras;
+import com.devthiago.appfazenda.service.BezerrasService;
 
 @RestController //implementação do rest 
-@RequestMapping (value = "/nascidos")
-public class NascidosResource {
+@RequestMapping (value = "/bezerras")
+public class BezerrasResource {
 	
 	@Autowired
-	private NascidosService service;
+	private BezerrasService service;
 	@GetMapping
-	public ResponseEntity<List<Nascidos>> findall(){
+	public ResponseEntity<List<Bezerras>> findall(){
 		
-		List<Nascidos> list = service.findAll();
+		List<Bezerras> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
-
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Nascidos> FindById(@PathVariable Long id){ 
-		Nascidos obj  = service.findById(id);
+	public ResponseEntity<Bezerras> FindById(@PathVariable Long id){ 
+		Bezerras obj  = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	@PostMapping
-	public ResponseEntity<Nascidos> Insert(@RequestBody Nascidos obj){
+	public ResponseEntity<Bezerras> Insert(@RequestBody Bezerras obj){
 		obj = service.Insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(obj.getId()).toUri();
@@ -50,7 +49,7 @@ public class NascidosResource {
 		return ResponseEntity.noContent().build();
 	}
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Nascidos> update (@PathVariable Long id,@RequestBody Nascidos obj ){
+	public ResponseEntity<Bezerras> update (@PathVariable Long id,@RequestBody Bezerras obj ){
 		obj = service.update(id, obj);
 		return ResponseEntity.ok().body(obj);
 	}

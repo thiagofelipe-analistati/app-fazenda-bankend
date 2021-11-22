@@ -27,14 +27,16 @@ public class Proprietarios implements Serializable {
 	private String name;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "proprietarios", cascade = CascadeType.ALL)
-	private List<Nascidos> nascidos = new ArrayList<>();
-	
+	@OneToMany(mappedBy = "proprietarios")
+	private List<Bezerros> bezerros = new ArrayList<>();
 	@JsonIgnore
-	@OneToMany(mappedBy = "proprietarios", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "proprietarios")
+	private List<Bezerras> bezerras = new ArrayList<>();
+	@JsonIgnore
+	@OneToMany(mappedBy = "proprietarios")
 	private List<Matrizes> matrizes = new ArrayList<>();
 	@JsonIgnore
-	@OneToMany(mappedBy = "proprietarios", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "proprietarios")
 	private List<Reprodutores> reprodutores = new ArrayList<>();
 	
 	public Proprietarios() {
@@ -55,8 +57,13 @@ public class Proprietarios implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public List<Nascidos> getNascidos() {
-		return nascidos;
+	@JsonIgnore
+	public List<Bezerros> getNascidos() {
+		return bezerros;
+	}
+	@JsonIgnore
+	public List<Bezerros> getNascidas() {
+		return bezerros;
 	}
 	public List<Matrizes> getMatrizes() {
 		return matrizes;

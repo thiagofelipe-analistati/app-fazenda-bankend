@@ -10,26 +10,26 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.devthiago.appfazenda.entities.Nascidos;
-import com.devthiago.appfazenda.repositories.NascidosRepository;
+import com.devthiago.appfazenda.entities.Bezerros;
+import com.devthiago.appfazenda.repositories.BezerrosRepository;
 import com.devthiago.appfazenda.service.exceptions.DatabaseExcepetion;
 import com.devthiago.appfazenda.service.exceptions.ResourceNotFoundException;
 
 
 @Service
-public class NascidosService {
+public class BezerrosService {
 	
 	@Autowired
-	private NascidosRepository userRepository;
-	public List<Nascidos> findAll(){
+	private BezerrosRepository userRepository;
+	public List<Bezerros> findAll(){
 		return userRepository.findAll();
 
 	}
-	public Nascidos findById(Long id) {
-		Optional<Nascidos> obj = userRepository.findById(id);
+	public Bezerros findById(Long id) {
+		Optional<Bezerros> obj = userRepository.findById(id);
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
-	public Nascidos Insert(Nascidos obj) {
+	public Bezerros Insert(Bezerros obj) {
 		return userRepository.save(obj);
 	}
 	public void delete(Long id) {
@@ -41,9 +41,9 @@ public class NascidosService {
 			throw new DatabaseExcepetion(e.getMessage());
 		}
 	}
-	public Nascidos update(Long id, Nascidos obj) {
+	public Bezerros update(Long id, Bezerros obj) {
 		try {
-		Nascidos entity = userRepository.getOne(id);
+		Bezerros entity = userRepository.getOne(id);
 		updateData(entity, obj);
 		return userRepository.save(entity);
 		} catch (EntityNotFoundException e) {
@@ -51,10 +51,9 @@ public class NascidosService {
 		}
 		
 	}
-	private void updateData(Nascidos entity, Nascidos obj) {
+	private void updateData(Bezerros entity, Bezerros obj) {
 		entity.setDataNascimento(obj.getDataNascimento());
 		entity.setIdentificacao(obj.getIdentificacao());
-		entity.setSexo(obj.getSexo());
 		entity.setProprietario(obj.getProprietario());
 		entity.setMatrizes(obj.getMatrizes());
 	}
